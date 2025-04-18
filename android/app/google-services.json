@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "753044783566",
+    "project_id": "kashinfo-58bb5",
+    "storage_bucket": "kashinfo-58bb5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753044783566:android:010c0f2ca463217bf36b9f",
+        "android_client_info": {
+          "package_name": "com.example.kashinfo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "753044783566-qefhf85otidlsv6e7ao5aj1hthq97h7t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kashinfo",
+            "certificate_hash": "97f377a14a992a9dead05596681449d8bcd5939d"
+          }
+        },
+        {
+          "client_id": "753044783566-amst1nqudlbs097600tc27beat0v5hj3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7cTis9IEeS9YNNYDfR_ugmi_QuZKQdaE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "753044783566-amst1nqudlbs097600tc27beat0v5hj3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "753044783566-fnsri72ob3blu5b3ovj5jk514u89dacc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.kashinfo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
