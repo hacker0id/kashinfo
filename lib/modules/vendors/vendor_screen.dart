@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,9 @@ class _VendorScreenState extends State<VendorScreen> {
   @override
   void initState() {
     super.initState();
-    vendorController.fetchVendorByDoc(widget.category);
+    WidgetsBinding.instance.addPostFrameCallback((context) {
+      vendorController.fetchVendorByDoc(widget.category);
+    });
   }
 
   @override
@@ -139,6 +142,16 @@ class _VendorScreenState extends State<VendorScreen> {
                                           // Text(
                                           //     "Availability: ${vendor.vendorAvailability}"),
                                           // Add other vendor fields if needed
+                                          if (vendor.vendorImage != null)
+                                            CachedNetworkImage(
+                                              imageUrl: vendorController.vImage,
+                                              placeholder: (context, url) =>
+                                                  CircularProgressIndicator(),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      Icon(Icons.error),
+                                              fit: BoxFit.cover,
+                                            )
                                         ],
                                       ),
                                       Row(

@@ -109,8 +109,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         curve: Curves.easeInOut,
                       );
                     } else {
-                      onboardingController.isOnboardingDone = true;
-
+                      onboardingController.onboardingComplete();
                       Get.to(UserAuthScreen());
                     }
                   },

@@ -54,8 +54,9 @@ class _SplashScreenWithNavigationState
 
   void _navigateToNextScreen() async {
     await Future.delayed(Duration(seconds: 3)); // Show splash for 3 sec
-
-    if (onboardingController.isOnboardingDone) {
+    bool userDidOnboarding = await onboardingController.isOnboardingComplete();
+    if (userDidOnboarding) {
+      debugPrint('-----> On Main ${onboardingController.isOnboardingDone}');
       Get.off(() => UserAuthScreen());
     } else {
       Get.off(() => OnboardingScreen());

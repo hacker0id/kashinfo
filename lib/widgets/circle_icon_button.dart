@@ -35,7 +35,7 @@ class _CircleButtonState extends State<CircleButton> {
           splashColor: Colors.transparent, // No splash effect
           highlightColor: Colors.transparent, // No highlight color
           child: AnimatedScale(
-            scale: _isTapped ? 0.85 : 1.0, // Scale effect on tap
+            scale: _isTapped ? 0.75 : 1.0, // Scale effect on tap
             duration: Duration(milliseconds: 150), // Duration of scaling effect
             child: Container(
               width: 60, // Equivalent to radius 30 * 2

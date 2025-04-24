@@ -12,6 +12,7 @@ import 'package:kashinfo/modules/auth/auth_controller.dart';
 import 'package:kashinfo/modules/homescreen/homescreen_controller.dart';
 import 'package:kashinfo/modules/onboarding/onboarding.dart';
 import 'package:kashinfo/modules/profile/profile_screen.dart';
+import 'package:kashinfo/modules/vendors/add_vendor_screen.dart';
 import 'package:kashinfo/widgets/circle_icon_button.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -164,7 +165,9 @@ class HomeScreen extends StatelessWidget {
                   CircleButton(
                     iconData: FontAwesomeIcons.plusCircle,
                     text: 'Add Vendor',
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => AddVendorScreen());
+                    },
                   ),
                   CircleButton(
                     iconData: FontAwesomeIcons.remove,

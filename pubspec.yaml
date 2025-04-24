@@ -33,6 +33,15 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   url_launcher: ^6.3.1
+  shimmer: ^3.0.0  # Added shimmer package
+  location: ^5.0.3  # Added location package
+  google_maps_flutter: ^2.5.3  # Added Google Maps package
+  vibration: ^1.8.4  # Added for haptic feedback
+  cached_network_image: ^3.4.1
+  firebase_storage: ^12.4.5
+  image: ^4.5.4
+  path_provider: ^2.1.5
+  shared_preferences: ^2.5.3
   # flutter_facebook_auth: 
  
  

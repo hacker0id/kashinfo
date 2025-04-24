@@ -3,9 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:kashinfo/constants/app_colors.dart';
 
 class Button extends StatefulWidget {
-  const Button({super.key, required this.onPressed, required this.text});
+  Button(
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      this.width,
+      this.showIcon = true});
   final VoidCallback onPressed;
   final String text;
+  bool? showIcon;
+  double? width;
 
   @override
   _ButtonState createState() => _ButtonState();
@@ -22,9 +29,11 @@ class _ButtonState extends State<Button> {
       elevation: 10,
       child: SizedBox(
         height: MediaQuery.sizeOf(context).height * 0.055,
-        width: widget.text == 'Next'
-            ? MediaQuery.sizeOf(context).width * 0.35
-            : MediaQuery.sizeOf(context).width * 0.55,
+        width: widget.width == null
+            ? widget.text == 'Next'
+                ? MediaQuery.sizeOf(context).width * 0.35
+                : MediaQuery.sizeOf(context).width * 0.55
+            : widget.width!,
         child: InkWell(
           onTap: () {
             setState(() {
@@ -62,13 +71,14 @@ class _ButtonState extends State<Button> {
                   widget.text != 'Next'
                       ? SizedBox(width: MediaQuery.sizeOf(context).width * 0.05)
                       : SizedBox.shrink(),
-                  widget.text != 'Next'
-                      ? Icon(
-                          CupertinoIcons.arrow_right_circle_fill,
-                          color: AppColors.pink,
-                          size: 32,
-                        )
-                      : SizedBox.shrink(),
+                  if (widget.showIcon!)
+                    widget.text != 'Next'
+                        ? Icon(
+                            CupertinoIcons.arrow_right_circle_fill,
+                            color: AppColors.pink,
+                            size: 32,
+                          )
+                        : SizedBox.shrink(),
                 ],
               ),
             ),

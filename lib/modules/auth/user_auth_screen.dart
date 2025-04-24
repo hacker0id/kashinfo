@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:kashinfo/constants/app_colors.dart';
+import 'package:kashinfo/helpers.dart';
 import 'package:kashinfo/modules/auth/auth_controller.dart';
 import 'package:kashinfo/modules/homescreen/homescreen.dart';
 import 'package:kashinfo/modules/onboarding/onboarding.dart';
@@ -68,6 +69,7 @@ class UserAuthScreen extends StatelessWidget {
                     CustomTextField(
                       controller: authController.passwordController,
                       hintText: 'Enter Password',
+                      isPasswordField: true,
                       icon: FontAwesomeIcons.key,
                       validator: (value) => value == null || value.isEmpty
                           ? 'Password cannot be empty'
@@ -104,7 +106,7 @@ class UserAuthScreen extends StatelessWidget {
                       children: [
                         Card(
                           color: Colors.transparent,
-                          elevation: 3,
+                          elevation: 5,
                           shape: CircleBorder(),
                           child: CircleButton(
                             iconData: FontAwesomeIcons.google,
@@ -118,7 +120,7 @@ class UserAuthScreen extends StatelessWidget {
                         if (GetPlatform.isIOS)
                           Card(
                             color: Colors.transparent,
-                            elevation: 3,
+                            elevation: 5,
                             shape: CircleBorder(),
                             child: CircleButton(
                               iconData: FontAwesomeIcons.apple,
@@ -128,7 +130,7 @@ class UserAuthScreen extends StatelessWidget {
                           ),
                         Card(
                           color: Colors.transparent,
-                          elevation: 3,
+                          elevation: 5,
                           shape: CircleBorder(),
                           child: CircleButton(
                             iconData: FontAwesomeIcons.facebook,
@@ -146,11 +148,46 @@ class UserAuthScreen extends StatelessWidget {
                     /// **Continue Button**
                     Button(
                       onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          debugPrint('=======+> Continue Tapped');
-                          await authController.createOrLoginUser(
-                              authController.emailController.text.trim(),
-                              authController.passwordController.text.trim());
+                        debugPrint('=======+> Continue Tapped');
+
+                        // Validate all fields first
+                        final isNameValid = Validator.validateInput(
+                          fieldName: 'Name',
+                          value: authController.nameController.text,
+                          forbiddenValues: [
+                            'Raakib',
+                            'Mansha',
+                            'admin',
+                            'root'
+                          ],
+                          customError: 'These User Ids Are Reserved!',
+                          maxLength: 10,
+                          minLength: 3,
+                        );
+
+                        final isEmailValid = Validator.validateInput(
+                          fieldName: 'Email',
+                          value: authController.emailController.text,
+                          email: authController.emailController.text,
+                        );
+
+                        final isPasswordValid = Validator.validateInput(
+                          fieldName: 'Password',
+                          value: authController.passwordController.text,
+                          maxLength: 32,
+                          minLength: 8,
+                        );
+
+                        // Only proceed if all validations pass
+                        if (isNameValid) {
+                          if (isEmailValid) {
+                            if (isPasswordValid) {
+                              await authController.createOrLoginUser(
+                                authController.emailController.text.trim(),
+                                authController.passwordController.text.trim(),
+                              );
+                            }
+                          }
                         }
                       },
                       text: 'Continue',

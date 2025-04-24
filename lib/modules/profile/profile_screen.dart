@@ -18,7 +18,6 @@ class UserProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userModel = authController.userModel.value;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(

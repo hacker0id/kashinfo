@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:label="kashinfo"
         android:name="${applicationName}"
@@ -38,6 +41,10 @@
             <meta-data
     android:name="com.facebook.sdk.ApplicationId"
     android:value="@string/facebook_app_id"/>
+
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyDchla77yWOBxWy1vxtNElM7mam0Xmzfd8"/>
 
     </application>
     <!-- Required to query activities that can process text, see:

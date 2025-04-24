@@ -24,10 +24,4 @@ class HomescreenController extends GetxController {
     }
   }
 }
-
-
-
-
-
-
       //‪+880 1987‑968259‬
