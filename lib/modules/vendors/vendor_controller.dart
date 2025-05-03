@@ -71,18 +71,18 @@ class VendorController extends GetxController {
 
   Future<void> getLocation() async {
     try {
-      print('Starting location service...');
+      debugPrint('Starting location service...');
       Location locationService = Location();
       bool serviceEnabled;
       PermissionStatus permissionGranted;
 
       // Check if location service is enabled
       serviceEnabled = await locationService.serviceEnabled();
-      print('Location service enabled: $serviceEnabled');
+      debugPrint('Location service enabled: $serviceEnabled');
 
       if (!serviceEnabled) {
         serviceEnabled = await locationService.requestService();
-        print('Requested location service: $serviceEnabled');
+        debugPrint('Requested location service: $serviceEnabled');
         if (!serviceEnabled) {
           Get.snackbar(
             'Error',
@@ -96,11 +96,11 @@ class VendorController extends GetxController {
 
       // Check location permissions
       permissionGranted = await locationService.hasPermission();
-      print('Location permission status: $permissionGranted');
+      debugPrint('Location permission status: $permissionGranted');
 
       if (permissionGranted == PermissionStatus.denied) {
         permissionGranted = await locationService.requestPermission();
-        print('Requested location permission: $permissionGranted');
+        debugPrint('Requested location permission: $permissionGranted');
         if (permissionGranted != PermissionStatus.granted) {
           Get.snackbar(
             'Error',
@@ -113,9 +113,9 @@ class VendorController extends GetxController {
       }
 
       // Get current location
-      print('Getting current location...');
+      debugPrint('Getting current location...');
       final currentLocation = await locationService.getLocation();
-      print(
+      debugPrint(
           'Current location: ${currentLocation.latitude}, ${currentLocation.longitude}');
 
       if (currentLocation.latitude == null ||
@@ -130,7 +130,7 @@ class VendorController extends GetxController {
       }
 
       // Open map selection screen
-      print('Opening map selection screen...');
+      debugPrint('Opening map selection screen...');
       try {
         final selectedLocation = await Get.to<Map<String, double>?>(
           () => MapSelectionScreen(
@@ -141,17 +141,18 @@ class VendorController extends GetxController {
           ),
           fullscreenDialog: true,
         );
-        print('Map selection screen closed with result: $selectedLocation');
+        debugPrint(
+            'Map selection screen closed with result: $selectedLocation');
 
         if (selectedLocation != null) {
-          print('Selected location: $selectedLocation');
+          debugPrint('Selected location: $selectedLocation');
           vendorLocation = selectedLocation;
           update();
         } else {
-          print('No location selected');
+          debugPrint('No location selected');
         }
       } catch (e) {
-        print('Error opening map selection screen: $e');
+        debugPrint('Error opening map selection screen: $e');
         Get.snackbar(
           'Error',
           'Could not open map selection screen: $e',
@@ -160,7 +161,7 @@ class VendorController extends GetxController {
         );
       }
     } catch (e) {
-      print('Error in getLocation: $e');
+      debugPrint('Error in getLocation: $e');
       Get.snackbar(
         'Error',
         'An error occurred while getting location: $e',
@@ -236,10 +237,10 @@ class VendorController extends GetxController {
         return Vendor.fromMap(data);
       }).toList();
 
-      print('---------> Vendors :$vendors');
-      print('---------> For Vendor Type :$vendorType');
+      debugPrint('---------> Vendors :$vendors');
+      debugPrint('---------> For Vendor Type :$vendorType');
     } catch (e) {
-      print('Error fetching vendors: $e');
+      debugPrint('Error fetching vendors: $e');
       vendors.clear();
     } finally {
       isLoading.value = false;

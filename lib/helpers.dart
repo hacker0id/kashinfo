@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Validator {
@@ -16,7 +17,7 @@ class Validator {
       Get.snackbar(
         'Error',
         '$fieldName cannot be empty',
-        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red.shade400,
       );
       return false;
     }
@@ -26,7 +27,7 @@ class Validator {
       Get.snackbar(
         'Error',
         '$fieldName cannot be just whitespace',
-        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red.shade400,
       );
       return false;
     }
@@ -36,7 +37,7 @@ class Validator {
       Get.snackbar(
         'Error',
         '$fieldName must be at least $minLength characters long',
-        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red.shade400,
       );
       return false;
     }
@@ -46,7 +47,7 @@ class Validator {
       Get.snackbar(
         'Error',
         '$fieldName must be no more than $maxLength characters long',
-        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red.shade400,
       );
       return false;
     }
@@ -56,7 +57,7 @@ class Validator {
       Get.snackbar(
         'Error',
         customError ?? '$fieldName is not allowed',
-        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red.shade400,
       );
       return false;
     }
@@ -65,12 +66,12 @@ class Validator {
         Get.snackbar(
           'Error',
           customError ?? 'Enter a valid email',
-          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red.shade400,
         );
         return false;
       }
     }
 
-    return false;
+    return true;
   }
 }

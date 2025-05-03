@@ -57,6 +57,7 @@ class UserAuthScreen extends StatelessWidget {
                     /// **Email Field**
                     CustomTextField(
                       controller: authController.emailController,
+                      inputType: TextInputType.emailAddress,
                       hintText: 'Enter Email',
                       icon: FontAwesomeIcons.solidEnvelope,
                       validator: (value) => value == null || value.isEmpty
@@ -180,6 +181,7 @@ class UserAuthScreen extends StatelessWidget {
 
                         // Only proceed if all validations pass
                         if (isNameValid) {
+                          debugPrint('-----------> CONTROL HERE');
                           if (isEmailValid) {
                             if (isPasswordValid) {
                               await authController.createOrLoginUser(

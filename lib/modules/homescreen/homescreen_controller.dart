@@ -1,15 +1,32 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:kashinfo/constants/strings.dart';
-
 import 'package:kashinfo/modules/vendors/vendor_screen.dart';
 
 class HomescreenController extends GetxController {
   RxInt tappedIndex = (0).obs;
 
+  List<String> categoryNames = [
+    'Health',
+    'Grocery',
+    'Shopping',
+    'Travel',
+    'Services',
+  ];
+
+  List<IconData> categoryIcons = [
+    FontAwesomeIcons.heartCirclePlus,
+    FontAwesomeIcons.bowlRice,
+    FontAwesomeIcons.bagShopping,
+    FontAwesomeIcons.plane,
+    FontAwesomeIcons.gears,
+  ];
+
 // HANDLE TAP NAVIGATION
   void toggleIndex(int index) {
     tappedIndex.value = (tappedIndex.value == index) ? 0 : index;
-    print(tappedIndex.value);
+    debugPrint('${tappedIndex.value}');
 
     if (tappedIndex == 0) {
       Get.to(VendorScreen(category: AppStrings.doct));
@@ -24,4 +41,3 @@ class HomescreenController extends GetxController {
     }
   }
 }
-      //‪+880 1987‑968259‬

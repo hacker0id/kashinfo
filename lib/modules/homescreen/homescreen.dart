@@ -324,10 +324,11 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(categoryIcons[index], size: 35, color: AppColors.pink),
+                    Icon(controller.categoryIcons[index],
+                        size: 35, color: AppColors.pink),
                     const SizedBox(width: 20),
                     Text(
-                      categoryNames[index],
+                      controller.categoryNames[index],
                       style:
                           const TextStyle(fontSize: 15, color: Colors.black87),
                     ),
@@ -340,20 +341,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-
-  List<String> categoryNames = [
-    'Health',
-    'Grocery',
-    'Shopping',
-    'Travel',
-    'Services',
-  ];
-
-  List<IconData> categoryIcons = [
-    FontAwesomeIcons.heartCirclePlus,
-    FontAwesomeIcons.bowlRice,
-    FontAwesomeIcons.bagShopping,
-    FontAwesomeIcons.plane,
-    FontAwesomeIcons.gears,
-  ];
 }

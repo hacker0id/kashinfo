@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:kashinfo/constants/app_colors.dart';
+import 'package:kashinfo/helpers.dart';
 import 'package:kashinfo/modules/auth/auth_controller.dart';
 import 'package:kashinfo/modules/onboarding/onboarding.dart';
 import 'package:kashinfo/widgets/button.dart';
@@ -68,12 +69,11 @@ class UserProfileScreen extends StatelessWidget {
                         ),
                         SizedBox(height: deviceHeight! * 0.045),
 
-                        /// **Email Field**
-
                         /// **Password Field**
                         CustomTextField(
                           controller: authController.passwordController,
                           hintText: 'Change Password',
+                          isPasswordField: true,
                           icon: FontAwesomeIcons.key,
                           validator: (value) => value == null || value.isEmpty
                               ? 'Password cannot be empty'
@@ -86,6 +86,7 @@ class UserProfileScreen extends StatelessWidget {
                           controller: confirmPasswordController,
                           hintText: 'Confirm Password',
                           icon: FontAwesomeIcons.key,
+                          isPasswordField: true,
                           validator: (value) => value == null || value.isEmpty
                               ? 'Password cannot be empty'
                               : null,
@@ -98,12 +99,36 @@ class UserProfileScreen extends StatelessWidget {
                         /// **Continue Button**
                         Button(
                           onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
-                              debugPrint('=======+> Continue Tapped');
-                              await authController.createOrLoginUser(
+                            // Validate all fields first
+                            final isNameValid = Validator.validateInput(
+                              fieldName: 'Name',
+                              value: authController.nameController.text,
+                              forbiddenValues: [
+                                'Raakib',
+                                'Mansha',
+                                'admin',
+                                'root'
+                              ],
+                              customError: 'These User Ids Are Reserved!',
+                              maxLength: 10,
+                              minLength: 3,
+                            );
+
+                            final isPasswordValid = Validator.validateInput(
+                              fieldName: 'Password',
+                              value: authController.passwordController.text,
+                              maxLength: 32,
+                              minLength: 8,
+                            );
+                            if (isNameValid) {
+                              if (isPasswordValid) {
+                                // ! REPLACE WITH UPDATE USER INFO FUNCTION
+
+                                await authController.createOrLoginUser(
                                   authController.emailController.text.trim(),
-                                  authController.passwordController.text
-                                      .trim());
+                                  authController.passwordController.text.trim(),
+                                );
+                              }
                             }
                           },
                           text: 'Update',

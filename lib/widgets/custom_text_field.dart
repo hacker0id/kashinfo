@@ -8,13 +8,17 @@ class CustomTextField extends StatefulWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   bool? isPasswordField;
+  final TextInputType? inputType;
+  final VoidCallback? onEditingComplete;
   CustomTextField(
       {Key? key,
       required this.hintText,
       required this.icon,
       this.validator,
       this.controller,
-      this.isPasswordField = false})
+      this.isPasswordField = false,
+      this.inputType = TextInputType.text,
+      this.onEditingComplete})
       : super(key: key);
 
   @override
@@ -27,6 +31,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: widget.inputType,
       controller: widget.controller,
       cursorColor: AppColors.pink.withOpacity(0.7),
       style: TextStyle(color: AppColors.pink),
